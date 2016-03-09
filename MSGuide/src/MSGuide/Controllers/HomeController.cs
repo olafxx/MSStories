@@ -5,15 +5,14 @@ using MSGuide.Repositories.Repositories.Interfaces;
 
 namespace MSGuide.Controllers
 {
-    //[Route("/")]
     public class HomeController : Controller
     {
-        [FromServices]
-        public ArticleContext db { get; set; }
         [FromServices]
         public IArticleRepository _articleRepository { get; set; }
         [FromServices]
         public IWriterRepository _writerRepository { get; set; }
+        [FromServices]
+        public ICategoryRepository _categoryRepository { get; set; }
 
 
         [Route("/")]
@@ -29,6 +28,7 @@ namespace MSGuide.Controllers
             var article = _articleRepository.GetByAlias(alias);
             return View(article);
         }
+        [Route("{}")]
 
         [Route("about")]
         public IActionResult About()
@@ -48,6 +48,13 @@ namespace MSGuide.Controllers
         public IActionResult Error()
         {
             return View();
+        }
+
+        public IActionResult MainMenu()
+        {
+            _categoryRepository.GetCategories();
+
+            return PartialView();
         }
     }
 }

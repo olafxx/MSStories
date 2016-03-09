@@ -12,5 +12,6 @@ namespace MSGuide.Repositories.Models
     {
         public DbSet<Article> Articles { get; set; }
         public DbSet<Writer> Writers { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

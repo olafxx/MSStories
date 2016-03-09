@@ -21,7 +21,7 @@ namespace MSGuide.Repositories.Repositories.Implementations
 
         public Article GetArticleByName(string name)
         {
-            return _context.Articles.First(o=>o.Header==name);
+            return _context.Articles.First(o=>o.Header == name);
         }
 
         public Article GetByAlias(string alias)

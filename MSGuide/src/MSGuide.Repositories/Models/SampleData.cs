@@ -45,6 +45,20 @@ namespace MSGuide.Models
                     );
                 context.SaveChanges();
             }
+            if (!context.Categories.Any())
+            {
+                var vlad = context.Categories.Add(new Category()
+                {
+                    Name = "Windows",
+                    Alias = "windows"
+                }).Entity;
+                var senin = context.Categories.Add(new Category()
+                {
+                    Name = "XBox",
+                    Alias = "XBox"
+                }).Entity;
+                context.SaveChanges();
+            }
         }
     }
 }

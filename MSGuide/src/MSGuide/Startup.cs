@@ -42,7 +42,7 @@ namespace MSGuide
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddSingleton<IArticleRepository, ArticleRepository>();
             services.AddSingleton<IWriterRepository, WriterRepository>();
-
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddMvc();
         }
 

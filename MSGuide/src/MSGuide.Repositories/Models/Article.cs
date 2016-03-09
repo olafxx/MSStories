@@ -12,8 +12,10 @@ namespace MSGuide.Repositories.Models
         public string Header { get; set; }
         public string Text { get; set; }
         public DateTime PubDate { get; set; }
+        public int? CategoryId { get; set; }
         public int WriterId { get; set; }
 
         public virtual Writer Writer { get; set; }
+        public virtual Category Category { get; set; }
     }
 }
