@@ -28,7 +28,6 @@ namespace MSStories.Controllers
             var article = _articleRepository.GetByAlias(alias);
             return View(article);
         }
-        [Route("{}")]
 
         [Route("about")]
         public IActionResult About()
