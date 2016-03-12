@@ -20,6 +20,18 @@
       "environmentVariables": {
         "Hosting:Environment": "Development"
       }
+    },
+    "Production": {
+      "commandName": "web",
+      "environmentVariables": {
+        "Hosting:Environment": "Production"
+      }
+    },
+    "Development": {
+      "commandName": "web",
+      "environmentVariables": {
+        "Hosting:Environment": "Development"
+      }
     }
   }
 }

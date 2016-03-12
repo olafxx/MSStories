@@ -46,9 +46,9 @@ gulp.task("min:css", function () {
 gulp.task("min", ["min:js", "min:css"]);
 
 gulp.task('scss', function () {
-    return gulp.src('./css/*.scss')
+    return gulp.src('./css/**/*.scss')
       .pipe(scss().on('error', scss.logError))
-      .pipe(gulp.dest(paths.webroot+'/css'));
+      .pipe(gulp.dest(paths.css));
 });
 
 gulp.task('scss:watch', function () {
