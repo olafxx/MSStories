@@ -1,4 +1,4 @@
-﻿using MSStories.Repositories.Models;
+﻿using MSStories.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

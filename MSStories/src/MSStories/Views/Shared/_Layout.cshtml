@@ -8,12 +8,11 @@
     <environment names="Development">
         @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
         <link rel="stylesheet" href="~/css/site.css" />
-
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        @*<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700,700italic,300italic,300&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
@@ -21,27 +20,29 @@
 </head>
 <body>
     <div class="nav_container">
-        <div class="menu">
-            <div class="logo">
-                <p>Logo</p>
-            </div>
-            <nav class="">
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
-                    <li><a asp-controller="Home" asp-action="About">Windows</a></li>
-                    <li><a asp-controller="Home" asp-action="Contact">XBox</a></li>
-                </ul>
-            </nav>
+        <div class="logo">
+            <p>Logo</p>
         </div>
+        <nav class="navbar">
+            <ul class="nav">
+                <li><a asp-controller="Home" asp-action="Index">Главная</a></li>
+                <li><a asp-controller="Home" asp-action="About">Windows</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">XBox</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">Band</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">Surface</a></li>
+                <li><a asp-controller="Home" asp-action="Contact">Lumia</a></li>
+
+            </ul>
+        </nav>
     </div>
-    <div class="container">
+    <div class="flex_container">
         <div class="left">
             <div class="main">
                 @RenderBody()
             </div>
         </div>
         <div class="right">
-            <div class="block hubs_categories" style="background:#808080">
+            <div class="additional_info">
                 <div class="title">Рубрики</div>
                 <ul class="categories">
                     <li>
@@ -80,26 +81,25 @@
                 </ul>
             </div>
         </div>
-        <div class="clear"></div>
-        <hr />
-        <footer>
-            <p>&copy; 2016 - MSStories</p>
-        </footer>
     </div>
+    <hr />
+    <footer>
+        <p>&copy; 2016 - MSStories</p>
+    </footer>
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.1.4.min.js"
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery">
         </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
+        @*<script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+            </script>*@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
 

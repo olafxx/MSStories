@@ -213,3 +213,4 @@ ModelManifest.xml
 
 #DBConnection
 appsettings.*.json
+config.*.json

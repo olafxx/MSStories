@@ -1,4 +1,4 @@
-﻿using MSStories.Repositories.Models;
+﻿using MSStories.Models;
 using MSStories.Repositories.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;

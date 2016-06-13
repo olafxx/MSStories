@@ -1,19 +1,22 @@
 ﻿using System.Linq;
-using Microsoft.AspNet.Mvc;
-using MSStories.Repositories.Models;
+using Microsoft.AspNetCore.Mvc;
 using MSStories.Repositories.Repositories.Interfaces;
 
 namespace MSStories.Controllers
 {
     public class HomeController : Controller
     {
-        [FromServices]
         public IArticleRepository _articleRepository { get; set; }
-        [FromServices]
         public IWriterRepository _writerRepository { get; set; }
-        [FromServices]
         public ICategoryRepository _categoryRepository { get; set; }
 
+        public HomeController([FromServices] IArticleRepository article, [FromServices] IWriterRepository writers, [FromServices] ICategoryRepository categories)
+        {
+            _articleRepository = article;
+            _writerRepository = writers;
+            _categoryRepository = categories;
+
+        }
 
         [Route("/")]
         public IActionResult Index()
