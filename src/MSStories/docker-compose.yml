@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  msstories:
+    image: msstories
+    build:
+      context: .
+      dockerfile: Dockerfile

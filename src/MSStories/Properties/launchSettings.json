@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50683/",
+      "applicationUrl": "http://localhost:60714/",
       "sslPort": 0
     }
   },
@@ -18,18 +18,14 @@
     "MSStories": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:60715"
     },
-    "MSStories.Production": {
-      "commandName": "Project",
+    "Docker": {
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      }
+      "launchUrl": "http://localhost:{ServicePort}"
     }
   }
 }

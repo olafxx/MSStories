@@ -214,3 +214,6 @@ ModelManifest.xml
 #DBConnection
 appsettings.*.json
 config.*.json
+/src/MSStories/.vscode
+/src/MSStories/.vscode
+/src/MSStories/bower_components
