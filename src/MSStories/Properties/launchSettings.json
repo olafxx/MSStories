@@ -26,6 +26,19 @@
     "Docker": {
       "launchBrowser": true,
       "launchUrl": "http://localhost:{ServicePort}"
+    },
+    "Testing": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Testing"
+      }
+    },
+    "Production": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Production"
+      }
     }
   }
 }

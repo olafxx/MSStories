@@ -13,7 +13,7 @@ namespace MSStories.Models
         public static void Initialize(IServiceProvider serviceProvider)
         {
             var context = serviceProvider.GetService<ArticleContext>();
-            context.Database.Migrate();
+            //context.Database.Migrate();
             if (!context.Articles.Any())
             {
                 var vlad = context.Writers.Add(new Writer()

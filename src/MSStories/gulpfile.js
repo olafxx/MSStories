@@ -1,5 +1,4 @@
-﻿/// <binding BeforeBuild='build' Clean='clean' ProjectOpened='scss:watch' />
-"use strict";
+﻿"use strict";
 
 var gulp = require("gulp"),
     rimraf = require("rimraf"),
@@ -19,6 +18,7 @@ var gulp = require("gulp"),
 var paths = {
     webroot: "./wwwroot/"
 };
+
 paths.js = paths.webroot + "js/**/*.js";
 paths.minJs = paths.webroot + "js/**/*.min.js";
 paths.css = paths.webroot + "css/**/*.css";
@@ -53,65 +53,69 @@ var stylelintConfig = {
         "block-opening-brace-newline-after": "always"
 
     }
-}
+};
 
-gulp.task("clean:js", function (cb) {
+var sassOptions = {
+    errLogToConsole: true,
+    outputStyle: 'expanded'
+};
+
+gulp.task("clean_js", function (cb) {
     rimraf(paths.concatJsDest, cb);
 });
 
-gulp.task("min:js", function () {
+gulp.task("min_js", function () {
     return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
         .pipe(concat(paths.concatJsDest))
         .pipe(uglify())
         .pipe(gulp.dest("."));
 });
 
-gulp.task("css:min", ['css:lint', 'sass', 'css:concat', 'css:create_min'], function () {
+gulp.task("css_min", gulp.series('css_create_min', function () {
     var processors = [cssnano()];
     return gulp.src(paths.minCss)
         .pipe(postcss(processors))
         .pipe(gulp.dest(paths.cssDir));
-});
+}));
 
-gulp.task('css:create_min', ['css:concat'], function () {
+gulp.task('css_create_min', gulp.series('css_concat', function () {
     return gulp.src(paths.concatCssDest)
-        .pipe(rename(paths.cssMin))
-        .pipe(gulp.dest("."));
-});
+        .pipe(rename(paths.cssMin))
+        .pipe(gulp.dest("."));
+}));
 
-gulp.task("css:lint", function () {
+gulp.task("css_lint", function () {
     var processors = [
-     stylelint(stylelintConfig),
-     reporter({ clearMessages: true })
+        stylelint(stylelintConfig),
+        reporter({ clearMessages: true })
     ];
     return gulp.src(paths.sass)
-      .pipe(postcss(processors, { syntax: syntax_scss }));
+        .pipe(postcss(processors, { syntax: syntax_scss }));
 });
 
-gulp.task('css:concat', ['sass'], function () {
+gulp.task('css_concat', gulp.series('sass', function () {
     return gulp.src([paths.normalize, paths.css, "!" + paths.minCss])
         .pipe(concat(paths.concatCssDest))
         .pipe(gulp.dest("."));
-});
+}));
 
-var sassOptions = {
-    errLogToConsole: true,
-    outputStyle: 'expanded'
-};
-gulp.task('sass', ['css:lint'], function () {
+
+
+gulp.task('sass', gulp.series('css_lint', function () {
     var process = [autoprefixer, focus];
     return gulp.src(paths.sass)
-      .pipe(sass(sassOptions).on('error', sass.logError))
-      .pipe(postcss(process))
-      .pipe(gulp.dest(paths.webroot + 'css'));
+        .pipe(sass(sassOptions).on('error', sass.logError))
+        .pipe(postcss(process))
+        .pipe(gulp.dest(paths.webroot + 'css'));
+}));
+
+gulp.task('sass_watch', function () {
+    gulp.watch(paths.sass)
+        .on("change", gulp.run('css_build'));
 });
 
-gulp.task('sass:watch', function () {
-    gulp.run('css');
-    gulp.watch(paths.sass, ['css']);
-});
+gulp.task("css_build", gulp.series("css_lint", 'sass', 'css_concat', 'css_create_min', 'css_min'));
 
 
-gulp.task("css", ["css:lint", 'sass', 'css:concat', 'css:create_min', 'css:min']);
 
-gulp.task("js", ['clean:js', 'min:js']);
+gulp.task("js", gulp.series('clean_js', 'min_js'));

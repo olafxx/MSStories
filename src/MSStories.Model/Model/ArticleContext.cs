@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using MSStories.Model;
 
 namespace MSStories.Models
 {
@@ -15,8 +16,20 @@ namespace MSStories.Models
 
             base.OnModelCreating(builder);
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder
+        //        .UseSqlServer(
+        //            ConfigHelper.GetConnectionString(),
+        //            options => options.EnableRetryOnFailure());
+        //}
+
+
         public DbSet<Article> Articles { get; set; }
         public DbSet<Writer> Writers { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        
     }
 }

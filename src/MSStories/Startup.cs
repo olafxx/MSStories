@@ -4,16 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MSStories.Data;
 using MSStories.Models;
-using MSStories.Services;
 using MSStories.Repositories.Repositories.Interfaces;
 using MSStories.Repositories.Repositories.Implementations;
+using Microsoft.EntityFrameworkCore;
 
 namespace MSStories
 {
@@ -47,23 +44,15 @@ namespace MSStories
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<ArticleContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddSingleton<IArticleRepository, ArticleRepository>();
             services.AddSingleton<IWriterRepository, WriterRepository>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            
 
             services.AddMvc();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +66,6 @@ namespace MSStories
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
             }
             else
@@ -88,8 +76,7 @@ namespace MSStories
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
-
-            app.UseIdentity();
+            
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
