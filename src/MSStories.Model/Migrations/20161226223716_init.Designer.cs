@@ -8,8 +8,8 @@ using MSStories.Models;
 namespace MSStories.Model.Migrations
 {
     [DbContext(typeof(ArticleContext))]
-    [Migration("20161225230544_Init")]
-    partial class Init
+    [Migration("20161226223716_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

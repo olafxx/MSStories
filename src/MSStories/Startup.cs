@@ -21,7 +21,8 @@ namespace MSStories
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddUserSecrets();
 
             if (env.IsDevelopment())
             {
@@ -50,7 +51,6 @@ namespace MSStories
             services.AddSingleton<IArticleRepository, ArticleRepository>();
             services.AddSingleton<IWriterRepository, WriterRepository>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
-            
 
             services.AddMvc();
         }
@@ -74,7 +74,6 @@ namespace MSStories
             }
 
             app.UseApplicationInsightsExceptionTelemetry();
-
             app.UseStaticFiles();
             
 
